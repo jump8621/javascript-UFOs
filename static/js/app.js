@@ -14,22 +14,14 @@ data.forEach((ufoSighting) => {
     });
   });
 
-// var dates = date.filter(function(date) {
-//   return date.value === value;
-// })
-// console.log(dates)
 
 
-var button = d3.select(".button");
-var form = d3.select(".form")
+var button = d3.select("#filter-btn");
 button.on("click", runEnter);
-form.on("submit", runEnter);
 
-//var team = roster.filter(function(roster) {
-//  return roster.madeTeam === true;
-//})
+// //var form = d3.select("#filters")
+// //form.on("submit", runEnter);
 
-//console.log(team);
 
 
 function runEnter() {
@@ -37,7 +29,15 @@ function runEnter() {
   var inputElement = d3.select("#datetime");
   var inputValue = inputElement.property("value");
   console.log(inputValue);
-  console.log(tableData);
   var filteredData = tableData.filter(ufo => ufo.datetime === inputValue);
   console.log(filteredData);
+  tbody.selectAll("tr").remove();
+  filteredData.forEach((ufoSighting) => {
+    var row = tbody.append("tr");
+    Object.entries(ufoSighting).forEach(([key,value]) =>{
+      var cell = row.append("td");
+      cell.text(value);
+    })
+  });
+}
 }
