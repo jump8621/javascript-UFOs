@@ -6,7 +6,7 @@ var tbody = d3.select("tbody")
 // console.log(tableData)
 var button = d3.select("#filter-btn");
 var form = d3.select("#form2");
-var form2 = d3.select("#state-id")
+//var form2 = d3.select("#state-id")
 //state filter button and input field
 /*var sfilter = document.createElement("Input");
 sfilter.setAttribute("type", "text")
@@ -34,7 +34,7 @@ filters.appendChild(li);
   //});
   // var inputText = d3.event.target.value;
 var pop_table = (data_input) => {
-  data.forEach((ufoSighting) => {
+  data_input.forEach((ufoSighting) => {
     var row = tbody.append("tr");
     Object.entries(ufoSighting).forEach(([key, value]) => {
       var cell = row.append("td");
@@ -47,7 +47,7 @@ pop_table(tableData)
 
 button.on("click", runEnter)
 form.on("submit", runEnter);
-form2.on("submit", runEnter)
+//form2.on("submit", runEnter)
 //what about clicking for the others
 
 // btn.on("click", runEnter)
@@ -73,16 +73,17 @@ function runEnter() {
   var dataTable = d3.selectAll("tbody>tr")
   dataTable.html("")
   //tbody.selectAll("tr").remove();
-
-  if (filteredData.length !== 0) {
-    pop_table(filteredData)
+  let response = { 
+    filteredData, filteredstate
   }
-  else if (filteredstate.length !==0) {
-    pop_table(filteredstate)
-  }
-  else {tbody.append("tr").append("td").text("No results found!")
-  }
-
+    if (response.filteredData.length !==0) {
+      pop_table(filteredData)
+    }
+    else if (response.filteredstate.length !==0) {
+      pop_table(filteredstate)
+    }
+    else {tbody.append("tr").append("td").text("No results found!")
+    }
 }
  /* filteredData.forEach((sightings) => {
     var row = tbody.append("tr");
