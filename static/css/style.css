@@ -3,6 +3,10 @@
   font-family: Ubuntu, sans-serif;
 }
 
+#dropdownMenu2 {
+  background-color: #4e5d6c;
+}
+
 html,
 body {
   height: 100%;
