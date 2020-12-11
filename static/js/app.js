@@ -48,21 +48,48 @@ function handleclick(){
   var country = d3.select("#countryid").property("value");
   //let filterData = tableData;
 
-  var filterData = tableData.filter(row =>
-    (row.datetime === date || row.datetime !== date) &&
-    (row.city === city || row.city !== city) &&
-    (row.country === country || row.country !== country) &&
-    (row.state === state || row.state !== state) &&
-    (row.shape === shape || row.shape !== shape)
-  );
-
-  if (filterData.length !==0) {
-    buildtable(filterData)
+  // var filterData = tableData.filter(row =>
+  //   (row.datetime === date || row.datetime !== date) &&
+  //   (row.city === city || row.city !== city) &&
+  //   (row.country === country || row.country !== country) &&
+  //   (row.state === state || row.state !== state) &&
+  //   (row.shape === shape || row.shape !== shape)
+  // );
+//   var filteredstate = tableData.filter(event => event.state === inputstate);
+//   console.log(filteredstate)
+  let filterData = tableData;
+  if (date) {
+    filterData = filterData.filter(row => row.datetime === date);
   }
+  else if (city) {
+    filterData = filterData.filter(row => row.city === city);
+  }
+  else if (state) {
+    filterData = filterData.filter(row => row.state === state);
+  }
+  else if (country) {
+    filterData = filterData.filter(row => row.country === country);
+  }
+  else if (shape) {
+    filterData = filterData.filter(row => row.shape === shape);
+  };
 
+  buildtable(filterData)
+
+
+  // var filterctryst = tableData.filter(row => row.state === State && row.country === Country)
+  // console.log(filterctryst)
+
+  // let filterData = {
+  //   filterDate, filtercity, filtercountry, filterstate, filtershape, filterctryst
+  // }
+
+  // if (filterDate.length !==0) {
+  //   buildtable(filterDate)
+  // }
     // let results = tableData.filter(event =>
     //   event.datetime === date || !date)
-  buildtable(filterData)
+  //buildtable(filterData)
 }
 d3.selectAll("#filter-btn").on("click", handleclick);
 buildtable(tableData);
