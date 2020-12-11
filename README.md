@@ -1,2 +1,2 @@
-# javascript-UFOs	## Welcome to GitHub Pages
+# javascript-UFOs	
 JavaScript objects, listening and filtering
